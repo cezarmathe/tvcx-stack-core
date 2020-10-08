@@ -1,0 +1,18 @@
+net.cezarmathe.com:53 {
+    errors
+    log
+    reload
+    file /zones/db.net.cezarmathe.com {
+        reload 1m
+    }
+}
+
+.:53 {
+    cache 30
+    errors
+    forward . tls://1.1.1.1 tls://1.0.0.1 {
+       tls_servername cloudflare-dns.com
+       health_check 5s
+    }
+    reload
+}

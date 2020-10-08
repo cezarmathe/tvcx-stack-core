@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+    coredns:
+        image: coredns/coredns
+        container_name: coredns
+        ports:
+            - "53:53/udp"
+        volumes:
+            - /srv/docker/coredns/config/:/config
+            - /srv/docker/coredns/zones/:/zones
+        command: -conf /config/Corefile
+        restart: unless-stopped
+
+    caddy:
+        image: caddy
+        container_name: caddy
+        volumes:
+            - /srv/docker/caddy/config/:/config
+            - /srv/docker/caddy/data/:/data
+            - /srv/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+            - /srv/http:/srv/http
+            - /srv/docker/caddy/ssl:/ssl
+        ports:
+            - "80:80"
+            - "443:443"
+        restart: unless-stopped
+
+    vault:
+        image: vault
+        container_name: vault
+        ports:
+            - "8200:8200"
+        depends_on: caddy
+
+    consul:
+        image: consul
+        container_name: consul
+
+    fabio:
+        image: fabiolb/fabio
+        container_name: fabio

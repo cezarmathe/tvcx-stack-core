@@ -1,0 +1,20 @@
+# tvcxvps caddyfile
+
+(defaults) {
+    tls /ssl/cert.pem /ssl/cert-key.pem
+    encode zstd gzip
+}
+
+#consul.cezarmathe.com {
+#    reverse_proxy 127.0.0.1:8000
+#}
+
+http://tvcxvps.tvcxair.net.cezarmathe.com {
+    redir https://tvcxvps.tvcxair.net.cezarmathe.com permanent
+}
+
+https://tvcxvps.tvcxair.net.cezarmathe.com {
+    import defaults
+    root * /srv/http
+    file_server browse
+}

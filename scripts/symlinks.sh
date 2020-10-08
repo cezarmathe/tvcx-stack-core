@@ -12,10 +12,10 @@ function main() {
 
     case "${cmd}" in
     "do")
-        stow --dir "$(pwd)/docker" --target-dir "/srv/docker" .
-        stow --dir "$(pwd)/etc" --target-dir "/etc" .
-        stow --dir "$(pwd)/ssl" --target-dir "/srv/ssl" .
-        stow --dir "$(pwd)/ssl" --target-dir "/srv/ufw" .
+        stow --dir "$(pwd)/docker" --target "/srv/docker" .
+        stow --dir "$(pwd)/etc" --target "/etc" .
+        stow --dir "$(pwd)/ssl" --target "/srv/ssl" .
+        stow --dir "$(pwd)/ssl" --target "/srv/ufw" .
         ;;
     "undo")
         ;;

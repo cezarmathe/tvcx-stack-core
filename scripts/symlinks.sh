@@ -16,18 +16,21 @@ function main() {
         stow --dir "$(pwd)/etc" --target "/etc" .
         stow --dir "$(pwd)/ssl" --target "/srv/ssl" .
         stow --dir "$(pwd)/ufw" --target "/srv/ufw" .
+        printf "%s\n" "Done!"
         ;;
     "redo")
         stow --dir "$(pwd)/docker" --target "/srv/docker" --restow .
         stow --dir "$(pwd)/etc" --target "/etc" --restow .
         stow --dir "$(pwd)/ssl" --target "/srv/ssl" --restow .
         stow --dir "$(pwd)/ufw" --target "/srv/ufw" --restow .
+        printf "%s\n" "Done!"
         ;;
     "undo")
         stow --dir "$(pwd)/docker" --target "/srv/docker" --delete .
         stow --dir "$(pwd)/etc" --target "/etc" --delete .
         stow --dir "$(pwd)/ssl" --target "/srv/ssl" --delete .
         stow --dir "$(pwd)/ufw" --target "/srv/ufw" --delete .
+        printf "%s\n" "Done!"
         ;;
     *)
         printf "%s\n" "Available commands: do redo undo"

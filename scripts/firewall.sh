@@ -40,3 +40,5 @@ function main() {
         ;;
     esac
 }
+
+main $@

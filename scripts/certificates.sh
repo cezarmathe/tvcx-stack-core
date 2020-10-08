@@ -3,15 +3,14 @@
 # This script will handle certificate requesting and hardlinking for all services.
 
 function hardlink() {
-    for dir in $(ls $(pwd)/ssl); do
+    for dir in $(ls /srv/ssl); do
         printf "%s\n" "Hardlinking certificate for ${dir}"
-        prev="$(pwd)"
-        cd "$(pwd)/ssl/${dir}"
+        cd "/srv/ssl/${dir}"
         local hardlink_to
         hardlink_to="$(cat $(pwd)/srv_src.conf | grep hardlink_to | tr -s ' ' | cut -d ' ' -f 3)"
         ln "$(pwd)/cert/cert.pem" "${hardlink_to}/cert.pem"
         ln "$(pwd)/cert/cert-key.pem" "${hardlink_to}/cert-key.pem"
-        cd "${prev}"
+        cd "/srv/ssl"
     done
     printf "%s\n" "Done!"
 

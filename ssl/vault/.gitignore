@@ -1,0 +1,11 @@
+# Ignore user-made certificate signing requests
+csr.json
+!templates/csr.json
+
+# Ignore the user-made cfssl configuration
+cfssl.conf
+!templates/cfssl.conf
+
+# Ignore the certificates directory
+cert/
+

@@ -52,7 +52,7 @@ services:
         image: consul
         container_name: consul
         volumes:
-            - /src/docker/consul:/consul
+            - /srv/docker/consul:/consul
         network_mode: host
         restart: unless-stopped
         depends_on:

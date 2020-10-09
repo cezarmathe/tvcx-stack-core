@@ -8,8 +8,9 @@ services:
         ports:
             - "53:53/udp"
         volumes:
-            - /srv/docker/coredns/config/:/config
-            - /srv/docker/coredns/zones/:/zones
+            - /srv/docker/coredns/config/:/config:ro
+            - /srv/docker/coredns/zones/:/zones:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
         command: -conf /config/Corefile
         restart: unless-stopped
 
@@ -20,9 +21,10 @@ services:
         volumes:
             - /srv/docker/caddy/config/:/config
             - /srv/docker/caddy/data/:/data
-            - /srv/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
-            - /srv/http:/srv/http
-            - /srv/ssl/caddy:/ssl
+            - /srv/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+            - /srv/http:/srv/http:ro
+            - /srv/ssl/caddy:/ssl:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
         ports:
             - "80:80"
             - "443:443"
@@ -53,7 +55,8 @@ services:
         container_name: consul
         volumes:
             - /srv/docker/consul:/consul
-            - /srv/ssl/consul:/ssl
+            - /srv/ssl/consul:/ssl:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
         network_mode: host
         restart: unless-stopped
         depends_on:

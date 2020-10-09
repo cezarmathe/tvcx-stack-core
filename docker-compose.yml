@@ -1,6 +1,7 @@
 version: "3.3"
 
 services:
+    # DNS Server
     coredns:
         image: coredns/coredns
         container_name: coredns
@@ -12,6 +13,7 @@ services:
         command: -conf /config/Corefile
         restart: unless-stopped
 
+    # Manual HTTP(S) server
     caddy:
         image: caddy
         container_name: caddy
@@ -20,23 +22,38 @@ services:
             - /srv/docker/caddy/data/:/data
             - /srv/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
             - /srv/http:/srv/http
-            - /srv/docker/caddy/ssl:/ssl
+            - /srv/ssl/caddy:/ssl
         ports:
             - "80:80"
             - "443:443"
         restart: unless-stopped
+        depends_on:
+            - coredns
 
-    vault:
-        image: vault
-        container_name: vault
-        ports:
-            - "8200:8200"
-        depends_on: caddy
+    # # Secure secrets management
+    # vault:
+    #     image: vault
+    #     container_name: vault
+    #     volumes:
+    #         - /srv/docker/vault/config:/vault/config
+    #         - /srv/ssl/vault/cert:/ssl
+    #     ports:
+    #         - "8200:8200"
+    #     cap_add:
+    #         - IPC_LOCK
+    #     restart: unless-stopped
+    #     depends_on: caddy
 
-    consul:
-        image: consul
-        container_name: consul
+    # # Service management
+    # consul:
+    #     image: consul
+    #     container_name: consul
+    #     restart: unless-stopped
+    #     depends_on: caddy
 
-    fabio:
-        image: fabiolb/fabio
-        container_name: fabio
+    # # Automatic HTTP(S) server and TCP proxy
+    # fabio:
+    #     image: fabiolb/fabio
+    #     container_name: fabio
+    #     restart: unless-stopped
+    #     depends_on: caddy

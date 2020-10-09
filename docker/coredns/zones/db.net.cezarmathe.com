@@ -23,4 +23,6 @@ tvcxserver.tvcxdorm IN A 10.125.169.0
 tvcxstation.tvcxdorm IN A 10.125.169.86
 tvcxbook.tvcxdorm IN A 10.125.169.144
 tvcxphone.tvcxdorm IN A 10.125.169.84
+consul.tvcxvps.tvcxair IN A 10.125.66.0
+vault.tvcxvps.tvcxair IN A 10.125.66.0
 

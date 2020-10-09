@@ -39,17 +39,23 @@ services:
     #         - /srv/ssl/vault/cert:/ssl
     #     ports:
     #         - "8200:8200"
+    #         - "8201:8201"
     #     cap_add:
     #         - IPC_LOCK
     #     restart: unless-stopped
-    #     depends_on: caddy
+    #     depends_on:
+    #         - caddy
+    #         - consul
 
-    # # Service management
-    # consul:
-    #     image: consul
-    #     container_name: consul
-    #     restart: unless-stopped
-    #     depends_on: caddy
+    # Service management
+    consul:
+        image: consul
+        container_name: consul
+        volumes:
+            - /src/docker/consul:/consul
+        network_mode: host
+        restart: unless-stopped
+        depends_on: caddy
 
     # # Automatic HTTP(S) server and TCP proxy
     # fabio:

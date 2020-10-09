@@ -53,6 +53,7 @@ services:
         container_name: consul
         volumes:
             - /srv/docker/consul:/consul
+            - /srv/ssl/consul:/ssl
         network_mode: host
         restart: unless-stopped
         depends_on:

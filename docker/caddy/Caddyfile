@@ -5,9 +5,23 @@
     encode zstd gzip
 }
 
-#consul.cezarmathe.com {
-#    reverse_proxy 127.0.0.1:8000
-#}
+http://consul.tvcxvps.tvcxair.net.cezarmathe.com {
+    redir https://consul.tvcxvps.tvcxair.net.cezarmathe.com permanent
+}
+
+https://consul.tvcxvps.tvcxair.net.cezarmathe.com {
+    import defaults
+    reverse_proxy 127.0.0.1:8500
+}
+
+http://vault.tvcxvps.tvcxair.net.cezarmathe.com {
+    redir https://vault.tvcxvps.tvcxair.net.cezarmathe.com permanent
+}
+
+https://vault.tvcxvps.tvcxair.net.cezarmathe.com {
+    import defaults
+    reverse_proxy 127.0.0.1:8200
+}
 
 http://tvcxvps.tvcxair.net.cezarmathe.com {
     redir https://tvcxvps.tvcxair.net.cezarmathe.com permanent

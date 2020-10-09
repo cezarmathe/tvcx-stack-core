@@ -11,7 +11,7 @@ http://consul.tvcxvps.tvcxair.net.cezarmathe.com {
 
 https://consul.tvcxvps.tvcxair.net.cezarmathe.com {
     import defaults
-    reverse_proxy https://127.0.0.1:8500
+    reverse_proxy https://10.125.66.0:8500
 }
 
 http://vault.tvcxvps.tvcxair.net.cezarmathe.com {
@@ -20,7 +20,7 @@ http://vault.tvcxvps.tvcxair.net.cezarmathe.com {
 
 https://vault.tvcxvps.tvcxair.net.cezarmathe.com {
     import defaults
-    reverse_proxy https://127.0.0.1:8200
+    reverse_proxy https://10.125.66.0:8200
 }
 
 http://tvcxvps.tvcxair.net.cezarmathe.com {

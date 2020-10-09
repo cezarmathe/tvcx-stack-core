@@ -28,8 +28,8 @@ data_dir           = "/var/lib/consul"
 datacenter         = "tvcxair"
 primary_datacenter = "tvcxair"
 
-bind_addr   = "192.168.1.4"
-client_addr = "0.0.0.0"
+bind_addr   = "10.125.66.0"
+client_addr = "127.0.0.1"
 
 performance {
     raft_multiplier = 5

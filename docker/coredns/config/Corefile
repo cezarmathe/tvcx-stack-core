@@ -1,10 +1,17 @@
-net.cezarmathe.com:53 {
+tvcxn.et:53 {
     errors
     log
     reload
-    file /zones/db.net.cezarmathe.com {
+    file /zones/db.tvcxn.et {
         reload 1m
     }
+}
+
+consul:53 {
+    errors
+    log
+    reload
+    forward . 127.0.0.1:8600
 }
 
 .:53 {

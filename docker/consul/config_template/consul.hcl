@@ -2,7 +2,7 @@
 
 acl {
     enabled                  = true
-    default_policy           = "allow"
+    default_policy           = "deny"
     down_policy              = "extend-cache"
     enable_token_persistence = true
 
@@ -39,7 +39,7 @@ retry_join = [
 ]
 
 bind_addr   = "{{ config_template.bind_addr }}"
-client_addr = "0.0.0.0"
+client_addr = "127.0.0.1"
 
 performance {
     raft_multiplier = 5

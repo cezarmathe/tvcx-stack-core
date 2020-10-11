@@ -35,6 +35,7 @@ services:
         network_mode: host
         volumes:
             - /srv/docker/fabio/config/:/etc/fabio:ro
+            - /srv/ssl/fabio:/ssl:ro
             - /etc/ssl/certs:/etc/ssl/certs:ro
         restart: unless-stopped
         depends_on:
@@ -46,7 +47,8 @@ services:
         container_name: vault
         volumes:
             - /srv/docker/vault/config:/vault/config
-            - /srv/ssl/vault/cert:/ssl
+            - /srv/ssl/vault:/ssl:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
         ports:
             - "8200:8200"
             - "8201:8201"

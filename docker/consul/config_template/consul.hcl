@@ -29,6 +29,9 @@ data_dir           = "/consul/config"
 datacenter         = "{{ config_template.datacenter }}"
 primary_datacenter = "tvcxair"
 
+domain    = "cons.ul"
+log_level = "info"
+
 retry_join = [
     "10.125.42.0",
     "10.125.66.0",

@@ -49,9 +49,7 @@ services:
             - /srv/docker/vault/config:/vault/config
             - /srv/ssl/vault:/ssl:ro
             - /etc/ssl/certs:/etc/ssl/certs:ro
-        ports:
-            - "8200:8200"
-            - "8201:8201"
+        network_mode: host
         cap_add:
             - IPC_LOCK
         restart: unless-stopped

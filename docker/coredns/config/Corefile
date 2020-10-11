@@ -7,7 +7,7 @@ tvcxn.et:53 {
     }
 }
 
-.consul:53 {
+cons.ul:53 {
     errors
     log
     reload

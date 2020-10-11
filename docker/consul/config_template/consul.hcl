@@ -2,7 +2,7 @@
 
 acl {
     enabled                  = true
-    default_policy           = "deny"
+    default_policy           = "allow"
     down_policy              = "extend-cache"
     enable_token_persistence = true
 

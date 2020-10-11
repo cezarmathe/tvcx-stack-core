@@ -11,7 +11,7 @@ cons.ul:53 {
     errors
     log
     reload
-    forward . 127.0.0.1:8600
+    forward . 10.125.66.0:8600
 }
 
 .:53 {

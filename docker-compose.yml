@@ -6,7 +6,7 @@ services:
         image: consul
         container_name: consul
         volumes:
-            - /srv/docker/consul/config:/consul/config:ro
+            - /srv/docker/consul/config:/consul/config
             - /srv/docker/consul/data:/consul/data
             - /srv/ssl/consul:/ssl:ro
             - /etc/ssl/certs:/etc/ssl/certs:ro

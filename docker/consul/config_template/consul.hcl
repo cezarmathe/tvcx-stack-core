@@ -24,11 +24,18 @@ bootstrap_expect = 1
 #     }
 # }
 
-data_dir           = "/var/lib/consul"
-datacenter         = "tvcxair"
+data_dir           = "/consul/config"
+
+datacenter         = "{{ config_template.datacenter }}"
 primary_datacenter = "tvcxair"
 
-bind_addr   = "10.125.66.0"
+retry_join = [
+    "10.125.42.0",
+    "10.125.66.0",
+    "10.125.169.0"
+]
+
+bind_addr   = "{{ config_template.bind_addr }}"
 client_addr = "127.0.0.1"
 
 performance {

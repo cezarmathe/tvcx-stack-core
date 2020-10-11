@@ -52,6 +52,7 @@ services:
         network_mode: host
         cap_add:
             - IPC_LOCK
+        command: server
         restart: unless-stopped
         depends_on:
             - consul

@@ -1,6 +1,20 @@
 version: "3.3"
 
 services:
+    # Service management
+    consul:
+        image: consul
+        container_name: consul
+        volumes:
+            - /srv/docker/consul/config:/consul/config:ro
+            - /srv/docker/consul/data:/consul/data
+            - /srv/ssl/consul:/ssl:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
+        network_mode: host
+        restart: unless-stopped
+        depends_on:
+            - coredns
+
     # DNS Server
     coredns:
         image: coredns/coredns
@@ -14,57 +28,30 @@ services:
         command: -conf /config/Corefile
         restart: unless-stopped
 
-    # Manual HTTP(S) server
-    caddy:
-        image: caddy
-        container_name: caddy
-        volumes:
-            - /srv/docker/caddy/config/:/config
-            - /srv/docker/caddy/data/:/data
-            - /srv/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-            - /srv/http:/srv/http:ro
-            - /srv/ssl/caddy:/ssl:ro
-            - /etc/ssl/certs:/etc/ssl/certs:ro
-        ports:
-            - "80:80"
-            - "443:443"
-        restart: unless-stopped
-        depends_on:
-            - coredns
-
-    # # Secure secrets management
-    # vault:
-    #     image: vault
-    #     container_name: vault
-    #     volumes:
-    #         - /srv/docker/vault/config:/vault/config
-    #         - /srv/ssl/vault/cert:/ssl
-    #     ports:
-    #         - "8200:8200"
-    #         - "8201:8201"
-    #     cap_add:
-    #         - IPC_LOCK
-    #     restart: unless-stopped
-    #     depends_on:
-    #         - caddy
-    #         - consul
-
-    # Service management
-    consul:
-        image: consul
-        container_name: consul
-        volumes:
-            - /srv/docker/consul:/consul
-            - /srv/ssl/consul:/ssl:ro
-            - /etc/ssl/certs:/etc/ssl/certs:ro
+    # Automatic HTTP(S) server and TCP proxy
+    fabio:
+        image: fabiolb/fabio
+        container_name: fabio
         network_mode: host
+        volumes:
+            - /srv/docker/fabio/config/:/etc/fabio:ro
+            - /etc/ssl/certs:/etc/ssl/certs:ro
         restart: unless-stopped
         depends_on:
-            - caddy
+            - consul
 
-    # # Automatic HTTP(S) server and TCP proxy
-    # fabio:
-    #     image: fabiolb/fabio
-    #     container_name: fabio
-    #     restart: unless-stopped
-    #     depends_on: caddy
+    # Secure secrets management
+    vault:
+        image: vault
+        container_name: vault
+        volumes:
+            - /srv/docker/vault/config:/vault/config
+            - /srv/ssl/vault/cert:/ssl
+        ports:
+            - "8200:8200"
+            - "8201:8201"
+        cap_add:
+            - IPC_LOCK
+        restart: unless-stopped
+        depends_on:
+            - consul

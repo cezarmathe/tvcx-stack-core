@@ -16,7 +16,4 @@ storage "consul" {
     tls_ca_file   = "/ssl/ca.pem"
 }
 
-api_addr     = "{{ config_template.listener_address }}"
-cluster_addr = "{{ config_template.cluster_address }}"
-
 ui = true

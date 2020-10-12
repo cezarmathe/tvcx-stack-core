@@ -37,6 +37,7 @@ services:
             - /srv/docker/fabio/config/:/etc/fabio:ro
             - /srv/ssl/fabio:/ssl:ro
             - /etc/ssl/certs:/etc/ssl/certs:ro
+        command: -cfg /etc/fabio/fabio.properties -insecure
         restart: unless-stopped
         depends_on:
             - consul

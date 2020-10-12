@@ -7,12 +7,13 @@ tvcxn.et:53 {
     }
 }
 
-cons.ul:53 {
+# Forward the DNS requests to Consul.
+ {{ config_template.consul_domain }}:53 {
+    cache 60
     errors
     log
     reload
-    cache 60
-    forward . 10.125.66.0:8600
+    forward . {{ config_template.consul_address }}
 }
 
 .:53 {

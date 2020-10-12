@@ -1,0 +1,2 @@
+*.hcl
+!config_template/*.hcl

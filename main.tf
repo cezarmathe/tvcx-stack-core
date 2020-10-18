@@ -42,7 +42,7 @@ resource "docker_image" "vault" {
 
 resource "docker_container" "consul" {
   name  = "consul"
-  image = docker_image.consul.id
+  image = docker_image.consul.latest
 
   network_mode = "host"
 
@@ -77,7 +77,7 @@ resource "docker_container" "consul" {
 
 resource "docker_container" "coredns" {
   name  = "coredns"
-  image = docker_image.coredns.id
+  image = docker_image.coredns.latest
 
   command = ["-conf", "/config/Corefile"]
 
@@ -140,7 +140,7 @@ resource "docker_container" "fabio" {
 
 resource "docker_container" "vault" {
   name  = "vault"
-  image = docker_image.vault.id
+  image = docker_image.vault.latest
 
   capabilities {
     add = ["IPC_LOCK"]

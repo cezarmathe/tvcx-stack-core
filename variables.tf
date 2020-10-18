@@ -10,12 +10,12 @@ variable "coredns_image_version" {
   description = "Version of the CoreDNS docker image."
 }
 
+variable "fabio_image_version" {
+  type = string
+  description = "Version of the Fabio docker image."
+}
+
 variable "vault_image_version" {
   type = string
   description = "Version of the Vault docker image."
-}
-
-variable "fabio_image_id" {
-  type = string
-  description = "The ID of the Fabio docker image."
 }

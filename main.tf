@@ -31,6 +31,15 @@ resource "docker_image" "coredns" {
   pull_triggers = ["${data.docker_registry_image.coredns.sha256_digest}"]
 }
 
+data "docker_registry_image" "fabio" {
+  name = "cezarmathe/fabio:${var.fabio_image_version}"
+}
+
+resource "docker_image" "fabio" {
+  name = data.docker_registry_image.fabio.name
+  pull_triggers = ["${data.docker_registry_image.fabio.sha256_digest}"]
+}
+
 data "docker_registry_image" "vault" {
   name = "vault:${var.vault_image_version}"
 }
@@ -106,7 +115,7 @@ resource "docker_container" "coredns" {
 
 resource "docker_container" "fabio" {
   name  = "fabio"
-  image = var.fabio_image_id
+  image = docker_image.coredns.latest
 
   command = ["-cfg", "/etc/fabio/fabio.properties", "-insecure"]
 

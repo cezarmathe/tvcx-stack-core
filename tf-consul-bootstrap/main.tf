@@ -118,6 +118,11 @@ resource "consul_acl_token" "fabio" {
   policies    = ["${consul_acl_policy.fabio.name}"]
 }
 
+resource "consul_acl_token" "nomad" {
+  description = "Nomad on ${consul_acl_policy.agent.name}"
+  policies    = ["${consul_acl_policy.nomad.name}"]
+}
+
 resource "consul_acl_token" "agent" {
   description = "Consul agent on ${consul_acl_policy.agent.name}"
   policies    = ["${consul_acl_policy.agent.name}"]

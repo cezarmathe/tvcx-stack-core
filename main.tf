@@ -67,7 +67,7 @@ resource "docker_container" "consul" {
 
   must_run = true
   restart  = "unless-stopped"
-  rm       = true
+  # rm       = true
   start    = true
 
   depends_on = [
@@ -100,7 +100,7 @@ resource "docker_container" "coredns" {
 
   must_run = true
   restart  = "unless-stopped"
-  rm       = true
+  # rm       = true
   start    = true
 }
 
@@ -130,7 +130,7 @@ resource "docker_container" "fabio" {
 
   must_run = true
   restart  = "unless-stopped"
-  rm       = true
+  # rm       = true
   start    = true
 
   depends_on = [
@@ -171,7 +171,7 @@ resource "docker_container" "vault" {
 
   must_run = true
   restart  = "unless-stopped"
-  rm       = true
+  # rm       = true
   start    = true
 
   depends_on = [

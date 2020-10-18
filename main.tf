@@ -115,11 +115,11 @@ resource "docker_container" "coredns" {
 
 resource "docker_container" "fabio" {
   name  = "fabio"
-  image = docker_image.coredns.latest
+  image = docker_image.fabio.latest
 
   command = ["-cfg", "/etc/fabio/fabio.properties", "-insecure"]
 
-  network_mode = "fabio"
+  network_mode = "host"
 
   volumes {
     host_path      = "/srv/docker/fabio/config"

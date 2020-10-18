@@ -6,6 +6,10 @@ acl {
     default_policy           = "deny"
     down_policy              = "extend-cache"
     enable_token_persistence = true
+    tokens {
+        agent       = "{{ config_template.agent_token }}"
+        replication = "{{ config_template.replication_token }}"
+    }
 }
 
 # An address reachable by other Consul agents.

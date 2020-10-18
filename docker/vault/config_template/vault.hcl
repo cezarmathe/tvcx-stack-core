@@ -1,7 +1,7 @@
 # Vault configuration
 
 listener "tcp" {
-    address       = "{{ config_template.listener_address }}"
+    address       = "{{ config_template.listener_address }}:8200"
     tls_cert_file = "/ssl/cert.pem"
     tls_key_file  = "/ssl/cert-key.pem"
 }

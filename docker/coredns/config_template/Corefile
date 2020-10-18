@@ -2,20 +2,21 @@ tvcxn.et:53 {
     errors
     log
     reload
-    file /zones/db.tvcxn.et {
+    file /config/db.tvcxn.et {
         reload 1m
     }
 }
 
 # Forward the DNS requests to Consul.
- {{ config_template.consul_domain }}:53 {
+cons.ul:53 {
     cache 60
     errors
     log
     reload
-    forward . {{ config_template.consul_address }}
+    forward . 127.0.0.1:8600
 }
 
+# Forward all other requests to the Cloudflare DNS servers.
 .:53 {
     cache 30
     errors

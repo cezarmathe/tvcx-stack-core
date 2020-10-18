@@ -11,7 +11,7 @@ acl {
 # An address reachable by other Consul agents.
 bind_addr   = "{{ config_template.bind_addr }}"
 client_addr = "127.0.0.1"
-{{#if config_template.server }}
+{{#if config_template.enable_server }}
 # Only enable bootstrap_expect if this agent is a server.
 bootstrap_expect = {{ config_template.bootstrap_expect }}
 {{/if}}
@@ -47,8 +47,8 @@ ports {
     https = 8500
 }
 
-server = {{ config_template.server }}
-ui     = true
+server = {{ config_template.enable_server }}
+ui     = {{ config_template.enable_ui }}
 
 # Verify all outgoing communications.
 verify_outgoing     = true

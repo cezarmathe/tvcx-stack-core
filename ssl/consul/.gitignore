@@ -9,3 +9,5 @@ cfssl.conf
 # Ignore the certificates directory
 cert/
 
+# Ignore eri data file
+templates/eri.conf

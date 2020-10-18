@@ -28,4 +28,7 @@ service_registration "consul" {
     tls_ca_file     = "/ssl/ca.pem"
 }
 
+api_addr     = "{{ config_template.listener_address }}:8200"
+cluster_addr = "{{ config_template.listener_address }}:8201"
+
 ui = true

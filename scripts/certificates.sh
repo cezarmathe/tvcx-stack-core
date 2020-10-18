@@ -13,6 +13,17 @@ function request() {
     printf "%s\n" "Done!"
 }
 
+function gendata() {
+    for dir in $(ls $(pwd)/ssl); do
+        printf "%s\n" "Generating data file for ${dir}"
+        prev="$(pwd)"
+        cd "$(pwd)/ssl/${dir}"
+        eri gendata
+        cd "${prev}"
+    done
+    printf "%s\n" "Done!"
+}
+
 function main() {
     local cmd
     cmd="$1"; shift
@@ -22,14 +33,14 @@ function main() {
     fi
 
     case "${cmd}" in
-    "hardlink")
-        hardlink
-        ;;
     "request")
         request
         ;;
+    "gendata")
+        gendata
+        ;;
     *)
-        printf "%s\n" "Available commands: request"
+        printf "%s\n" "Available commands: gendata request"
         ;;
     esac
 }

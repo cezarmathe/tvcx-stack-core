@@ -27,7 +27,7 @@ datacenter         = "{{ config_template.datacenter }}"
 domain             = "{{ config_template.domain }}"
 primary_datacenter = "tvcxair"
 # Retry to join the other agents.
-retry_join         = [
+retry_join_wan     = [
     "10.125.42.0",
     "10.125.66.0",
     "10.125.169.0"

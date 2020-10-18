@@ -28,7 +28,7 @@ resource "consul_acl_policy" "dns" {
 
 resource "consul_acl_policy" "fabio" {
   name = "fabio"
-  rules = file("${path.module}/consul/policies/fabio.hcl")
+  rules = file("${path.module}/policies/fabio.hcl")
 }
 
 resource "consul_acl_policy" "nomad" {

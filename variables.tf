@@ -14,3 +14,8 @@ variable "vault_image_version" {
   type = string
   description = "Version of the Vault docker image."
 }
+
+variable "fabio_image_id" {
+  type = string
+  description = "The ID of the Fabio docker image."
+}

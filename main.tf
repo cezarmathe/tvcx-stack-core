@@ -106,7 +106,7 @@ resource "docker_container" "coredns" {
 
 resource "docker_container" "fabio" {
   name  = "fabio"
-  image = docker_image.fabio.id # CHANGEME
+  image = var.fabio_image_id
 
   command = ["-cfg", "/etc/fabio/fabio.properties", "-insecure"]
 

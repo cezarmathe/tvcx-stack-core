@@ -39,6 +39,10 @@ consul {
     client_auto_join    = true
     server_service_name = "nomad-server"
     server_auto_join    = true
+
+    tags = [
+        "urlprefix-nomad.service.cons.ul/"
+    ]
 }
 
 datacenter = "tvcxdc"

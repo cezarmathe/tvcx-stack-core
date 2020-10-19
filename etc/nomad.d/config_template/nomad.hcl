@@ -32,7 +32,7 @@ client {
 }
 
 consul {
-    address   = "{{ config_template.bind_addr }}:8500"
+    address   = "127.0.0.1:8500"
     ca_file   = "/srv/ssl/nomad/ca.pem"
     cert_file = "/srv/ssl/nomad/cert.pem"
     key_file  = "/srv/ssl/nomad/cert-key.pem"
@@ -86,7 +86,7 @@ tls {
 
 vault {
     enabled = true
-    address = "https://{{ config_template.bind_addr }}:8200"
+    address = "https://127.0.0.1:8200"
 
     ca_file   = "/srv/ssl/nomad/ca.pem"
     cert_file = "/srv/ssl/nomad/cert.pem"

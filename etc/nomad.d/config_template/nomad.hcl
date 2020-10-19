@@ -94,7 +94,7 @@ vault {
 
     create_from_role = "nomad-role"
     task_token_ttl   = "1h"
-    token            = "nomad-role"
+    token            = "{{ config_template.vault_token }}"
 }
 
 # Enable mounting Docker volumes from outside the Nomad directory.

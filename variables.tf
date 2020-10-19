@@ -19,3 +19,8 @@ variable "vault_image_version" {
   type = string
   description = "Version of the Vault docker image."
 }
+
+variable "vault_addr" {
+  type = string
+  description = "Address to Vault"
+}

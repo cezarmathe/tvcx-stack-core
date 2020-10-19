@@ -1,10 +1,10 @@
 # Nomad configuration
 
 # The ACL section is commented because I need to research it a bit more.
-# # Enable ACLs.
-# acl {
-#     enabled = true
-# }
+# Enable ACLs.
+acl {
+    enabled = true
+}
 
 bind_addr = "{{ config_template.bind_addr }}"
 
@@ -27,7 +27,7 @@ client {
 }
 
 consul {
-    address   = "localhost:8500"
+    address   = "{{ config_template.bind_addr }}:8500"
     ca_file   = "/srv/ssl/nomad/ca.pem"
     cert_file = "/srv/ssl/nomad/cert.pem"
     key_file  = "/srv/ssl/nomad/cert-key.pem"
@@ -37,7 +37,7 @@ consul {
     auto_advertise      = true
     client_service_name = "nomad-client"
     client_auto_join    = true
-    server_service_name = "nomad-server}"
+    server_service_name = "nomad-server"
     server_auto_join    = true
 }
 
@@ -77,7 +77,7 @@ tls {
 
 vault {
     enabled = true
-    address = "https://localhost:8200"
+    address = "https://{{ config_template.bind_addr }}:8200"
 
     ca_file   = "/srv/ssl/nomad/ca.pem"
     cert_file = "/srv/ssl/nomad/cert.pem"

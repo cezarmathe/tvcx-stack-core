@@ -23,16 +23,16 @@ resource "consul_acl_policy" "agent_tvcxpi" {
 resource "consul_acl_policy" "agent_tvcxvps" {
   name        = "agent-tvcxvps"
   rules       = <<-RULE
-    node "tvcxpi" {
+    node "tvcxvps" {
         policy = "write"
     }
   RULE
 }
 
-resource "consul_acl_policy" "agent_tvcxdorm" {
-  name        = "agent-tvcxdorm"
+resource "consul_acl_policy" "agent_tvcxserver" {
+  name        = "agent-tvcxserver"
   rules       = <<-RULE
-    node "tvcxpi" {
+    node "tvcxserver" {
         policy = "write"
     }
   RULE
@@ -135,8 +135,8 @@ resource "consul_acl_token" "vault_tvcxvps" {
   policies    = ["${consul_acl_policy.vault.name}"]
 }
 
-resource "consul_acl_token" "vault_tvcxdorm" {
-  description = "Vault on tvcxdorm"
+resource "consul_acl_token" "vault_tvcxserver" {
+  description = "Vault on tvcxserver"
   policies    = ["${consul_acl_policy.vault.name}"]
 }
 
@@ -150,8 +150,8 @@ resource "consul_acl_token" "fabio_tvcxvps" {
   policies    = ["${consul_acl_policy.fabio.name}"]
 }
 
-resource "consul_acl_token" "fabio_tvcxdorm" {
-  description = "Fabio on tvcxdorm"
+resource "consul_acl_token" "fabio_tvcxserver" {
+  description = "Fabio on tvcxserver"
   policies    = ["${consul_acl_policy.fabio.name}"]
 }
 
@@ -165,8 +165,8 @@ resource "consul_acl_token" "nomad_tvcxvps" {
   policies    = ["${consul_acl_policy.nomad.name}"]
 }
 
-resource "consul_acl_token" "nomad_tvcxdorm" {
-  description = "Nomad on tvcxdorm"
+resource "consul_acl_token" "nomad_tvcxserver" {
+  description = "Nomad on tvcxserver"
   policies    = ["${consul_acl_policy.nomad.name}"]
 }
 
@@ -180,9 +180,9 @@ resource "consul_acl_token" "agent_tvcxvps" {
   policies    = ["${consul_acl_policy.agent_tvcxvps.name}"]
 }
 
-resource "consul_acl_token" "agent_tvcxdorm" {
-  description = "Consul agent on tvcxdorm"
-  policies    = ["${consul_acl_policy.agent_tvcxdorm.name}"]
+resource "consul_acl_token" "agent_tvcxserver" {
+  description = "Consul agent on tvcxserver"
+  policies    = ["${consul_acl_policy.agent_tvcxserver.name}"]
 }
 
 ### KV ###

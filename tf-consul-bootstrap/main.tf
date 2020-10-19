@@ -11,11 +11,28 @@ data "consul_agent_config" "remote" {}
 
 ### ACL POLICIES ###
 
-resource "consul_acl_policy" "agent" {
-  name        = "agent-${data.consul_agent_config.remote.node_name}"
-  datacenters = ["${data.consul_agent_config.remote.datacenter}"]
+resource "consul_acl_policy" "agent_tvcxpi" {
+  name        = "agent-tvcxpi"
   rules       = <<-RULE
-    node "${data.consul_agent_config.remote.node_name}" {
+    node "tvcxpi" {
+        policy = "write"
+    }
+  RULE
+}
+
+resource "consul_acl_policy" "agent_tvcxvps" {
+  name        = "agent-tvcxvps"
+  rules       = <<-RULE
+    node "tvcxpi" {
+        policy = "write"
+    }
+  RULE
+}
+
+resource "consul_acl_policy" "agent_tvcxdorm" {
+  name        = "agent-tvcxdorm"
+  rules       = <<-RULE
+    node "tvcxpi" {
         policy = "write"
     }
   RULE
@@ -123,9 +140,19 @@ resource "consul_acl_token" "nomad" {
   policies    = ["${consul_acl_policy.nomad.name}"]
 }
 
-resource "consul_acl_token" "agent" {
-  description = "Consul agent on ${consul_acl_policy.agent.name}"
-  policies    = ["${consul_acl_policy.agent.name}"]
+resource "consul_acl_token" "agent_tvcxpi" {
+  description = "Consul agent on tvcxpi"
+  policies    = ["${consul_acl_policy.agent_tvcxpi.name}"]
+}
+
+resource "consul_acl_token" "agent_tvcxvps" {
+  description = "Consul agent on tvcxvps"
+  policies    = ["${consul_acl_policy.agent_tvcxvps.name}"]
+}
+
+resource "consul_acl_token" "agent_tvcxdorm" {
+  description = "Consul agent on tvcxdorm"
+  policies    = ["${consul_acl_policy.agent_tvcxdorm.name}"]
 }
 
 resource "consul_acl_token" "replication" {

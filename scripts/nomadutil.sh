@@ -2,17 +2,17 @@
 
 # nomadutil - a utility script for Nomad
 
-function start() {
+function nomad_start() {
     systemctl enable --now nomad
     printf "%s\n" "Done!"
 }
 
-function stop() {
+function nomad_stop() {
     systemctl disable --now nomad
     printf "%s\n" "Done!"
 }
 
-function install() {
+function nomad_install() {
     local arch
     arch="$1"; shift
     local ver
@@ -55,7 +55,7 @@ EOF
     printf "%s\n" "Done!"
 }
 
-function uninstall() {
+function nomad_uninstall() {
     rm /usr/local/bin/nomad
     rm /etc/systemd/system/nomad.service
     printf "%s\n" "Done!"

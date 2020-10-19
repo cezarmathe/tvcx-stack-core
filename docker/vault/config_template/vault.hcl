@@ -17,7 +17,7 @@ storage "consul" {
 }
 
 service_registration "consul" {
-    address         = "127.0.0.1:8500"
+    address         = "{{ config_template.listener_address }}:8500"
     scheme          = "https"
     # Register the Vault service in a way that can be picked up by fabio for proxying.
     service_tags    = "urlprefix-vault.service.cons.ul"

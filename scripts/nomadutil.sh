@@ -65,7 +65,7 @@ function main() {
     local cmd
     cmd="$1"; shift
     if [[ -z "${cmd}" ]]; then
-        printf "%s\n" "Available commands: request"
+        printf "%s\n" "Available commands: install start stop uninstall"
         exit 1
     fi
 

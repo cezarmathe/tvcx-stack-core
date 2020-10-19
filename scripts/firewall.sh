@@ -3,6 +3,7 @@
 # This script will handle bringing the firewall up or down for all services.
 
 function start() {
+    ufw default deny
     for dir in $(ls /srv/ufw); do
         printf "%s\n" "Starting firewall for ${dir}"
         cd "/srv/ufw/${dir}"
@@ -17,6 +18,7 @@ function stop() {
         cd "/srv/ufw/${dir}"
         ./stop.sh
     done
+    ufw default allow
     printf "%s\n" "Done!"
 }
 

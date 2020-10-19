@@ -29,7 +29,6 @@ Sources for the configuration of a few services deployed on my servers.
 You need to fill these files:
 
 - ssl/consul/templates/eri.conf - data for the Consul certificate
-- ssl/fabio/templates/eri.conf - data for the Fabio certificate
 - ssl/vault/templates/eri.conf - data for the Vault certificate
 
 - etc/nomad.d/config_template/eri.conf - data for the Nomad configuration file template

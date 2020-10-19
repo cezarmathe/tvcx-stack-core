@@ -29,7 +29,7 @@ function nomad_install() {
         return
     fi
 
-    cat > /etc/systemd/systen/nomad.service <<EOF
+    cat > /etc/systemd/system/nomad.service <<EOF
 [Unit]
 Description=Nomad
 Documentation=https://nomadproject.io/docs/

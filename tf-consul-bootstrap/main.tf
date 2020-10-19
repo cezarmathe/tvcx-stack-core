@@ -125,18 +125,48 @@ resource "consul_acl_token" "anonymous" {
   policies    = ["${consul_acl_policy.dns.name}"]
 }
 
-resource "consul_acl_token" "vault" {
-  description = "Vault on ${consul_acl_policy.agent.name}"
+resource "consul_acl_token" "vault_tvcxpi" {
+  description = "Vault on tvcxpi"
   policies    = ["${consul_acl_policy.vault.name}"]
 }
 
-resource "consul_acl_token" "fabio" {
-  description = "Fabio on ${consul_acl_policy.agent.name}"
+resource "consul_acl_token" "vault_tvcxvps" {
+  description = "Vault on tvcxvps"
+  policies    = ["${consul_acl_policy.vault.name}"]
+}
+
+resource "consul_acl_token" "vault_tvcxdorm" {
+  description = "Vault on tvcxdorm"
+  policies    = ["${consul_acl_policy.vault.name}"]
+}
+
+resource "consul_acl_token" "fabio_tvcxpi" {
+  description = "Fabio on tvcxpi"
   policies    = ["${consul_acl_policy.fabio.name}"]
 }
 
-resource "consul_acl_token" "nomad" {
-  description = "Nomad on ${consul_acl_policy.agent.name}"
+resource "consul_acl_token" "fabio_tvcxvps" {
+  description = "Fabio on tvcxvps"
+  policies    = ["${consul_acl_policy.fabio.name}"]
+}
+
+resource "consul_acl_token" "fabio_tvcxdorm" {
+  description = "Fabio on tvcxdorm"
+  policies    = ["${consul_acl_policy.fabio.name}"]
+}
+
+resource "consul_acl_token" "nomad_tvcxpi" {
+  description = "Nomad on tvcxpi"
+  policies    = ["${consul_acl_policy.nomad.name}"]
+}
+
+resource "consul_acl_token" "nomad_tvcxvps" {
+  description = "Nomad on tvcxvps"
+  policies    = ["${consul_acl_policy.nomad.name}"]
+}
+
+resource "consul_acl_token" "nomad_tvcxdorm" {
+  description = "Nomad on tvcxdorm"
   policies    = ["${consul_acl_policy.nomad.name}"]
 }
 
@@ -153,11 +183,6 @@ resource "consul_acl_token" "agent_tvcxvps" {
 resource "consul_acl_token" "agent_tvcxdorm" {
   description = "Consul agent on tvcxdorm"
   policies    = ["${consul_acl_policy.agent_tvcxdorm.name}"]
-}
-
-resource "consul_acl_token" "replication" {
-  description = "Consul replication token for ${consul_acl_policy.agent.name}"
-  policies    = ["${consul_acl_policy.replication.name}"]
 }
 
 ### KV ###

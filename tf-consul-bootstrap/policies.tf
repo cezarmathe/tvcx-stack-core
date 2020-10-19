@@ -83,11 +83,6 @@ resource "consul_acl_policy" "operator_kv_write_fabio" {
   RULE
 }
 
-resource "consul_acl_policy" "replication" {
-  name = "replication"
-  rules = file("${path.module}/policies/replication.hcl")
-}
-
 resource "consul_acl_policy" "vault" {
   name = "vault"
   rules = file("${path.module}/policies/vault.hcl")

@@ -30,8 +30,9 @@ resource "vault_mount" "kv2_git" {
 }
 
 # Enable the PKI secrets engine for TVCX.
-resource "vault_pki_secret_backend" "pki" {
+resource "vault_mount" "pki" {
   path        = "pki_tvcx"
+  type        = "pki"
   description = "PKI secrets backend for TVCX."
 
   default_lease_ttl_seconds = 604800   # One week

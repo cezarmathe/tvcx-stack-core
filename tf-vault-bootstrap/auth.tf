@@ -2,7 +2,7 @@
 
 # Create an admin user.
 resource "vault_generic_endpoint" "admin_user" {
-  depends_on           = ["vault_auth_backend.userpass"]
+  depends_on           = ["${vault_auth_backend.userpass}"]
   path                 = "auth/userpass/users/${var.admin_user_name}"
   ignore_absent_fields = true
 

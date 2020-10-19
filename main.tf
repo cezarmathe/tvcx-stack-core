@@ -53,6 +53,8 @@ resource "docker_container" "consul" {
   name  = "consul"
   image = docker_image.consul.latest
 
+  command = ["agent"]
+
   network_mode = "host"
 
   volumes {

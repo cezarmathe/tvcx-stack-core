@@ -14,8 +14,8 @@ acl {
 }
 
 addresses {
-    # Let the HTTPS interface be accessible from outside
-    https = "{{ config_template.bind_addr }}"
+    # Let the HTTPS interface be accessible from outside, not just from localhost
+    https = "{{ config_template.bind_addr }} 127.0.0.1"
 }
 
 # An address reachable by other Consul agents.

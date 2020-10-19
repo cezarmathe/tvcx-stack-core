@@ -8,7 +8,7 @@ acl {
 
 addresses {
     # Let the HTTPS interface be accessible localhost, too
-    http = "{{ config_template.bind_addr }} 127.0.0.1"
+    http = "{{ config_template.bind_addr }}"
 }
 
 bind_addr = "{{ config_template.bind_addr }}"

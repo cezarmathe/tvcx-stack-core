@@ -46,7 +46,8 @@ consul {
     server_auto_join    = true
 
     tags = [
-        "urlprefix-nomad.service.cons.ul/"
+        "urlprefix-nomad-server.service.cons.ul/",
+        "urlprefix-nomad-client.service.cons.ul/"
     ]
 }
 

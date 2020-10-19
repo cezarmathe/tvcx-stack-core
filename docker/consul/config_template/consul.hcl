@@ -13,9 +13,15 @@ acl {
     }
 }
 
+addresses {
+    # Let the HTTPS interface be accessible from outside
+    https = "{{ config_template.bind_addr }}"
+}
+
 # An address reachable by other Consul agents.
 bind_addr   = "{{ config_template.bind_addr }}"
-client_addr = "127.0.0.1,{{ config_template.bind_addr }}"
+# The default address reachable by clients.
+client_addr = "127.0.0.1"
 
 # Require 3 servers to bootstrap the cluster
 bootstrap_expect = 3

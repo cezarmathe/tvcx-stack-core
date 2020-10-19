@@ -8,7 +8,6 @@
 
 bind_addr = "{{ config_template.bind_addr }}"
 
-{{#if config_template.client}}
 # Nomad client configuration.
 client {
     enabled = true
@@ -26,7 +25,6 @@ client {
         read_only = true
     }
 }
-{{/if}}
 
 consul {
     address   = "localhost:8500"
@@ -37,26 +35,20 @@ consul {
     token     = "{{ config_template.consul_token }}"
 
     auto_advertise      = true
-{{#if config_template.client}}
-    client_service_name = "{{ config_template.client_service_name }}"
+    client_service_name = "nomad-client"
     client_auto_join    = true
-{{/if}}
-{{#if config_template.server}}
-    server_service_name = "{{ config_template.server_service_name }}"
+    server_service_name = "nomad-server}"
     server_auto_join    = true
-{{/if}}
 }
 
-datacenter = "{{ config_template.datacenter }}"
+datacenter = "tvcxdc"
 data_dir   = "/srv/nomad"
 
-{{#if config_template.server}}
 # Nomad server configuration.
 server {
     enabled          = true
-    bootstrap_expect = {{ config_template.server_bootstrap_expect }}
+    bootstrap_expect = 3
 }
-{{/if}}
 
 # Join other Nomad servers.
 server_join {
@@ -91,9 +83,9 @@ vault {
     cert_file = "/srv/ssl/nomad/cert.pem"
     key_file  = "/srv/ssl/nomad/cert-key.pem"
 
-    create_from_role = "{{ config_template.vault_role }}"
+    create_from_role = "nomad-role"
     task_token_ttl   = "1h"
-    token            = "{{ config_template.vault_token }}"
+    token            = "nomad-role"
 }
 
 # Enable mounting Docker volumes from outside the Nomad directory.

@@ -16,10 +16,10 @@ acl {
 # An address reachable by other Consul agents.
 bind_addr   = "{{ config_template.bind_addr }}"
 client_addr = "127.0.0.1"
-{{#if config_template.enable_server }}
-# Only enable bootstrap_expect if this agent is a server.
-bootstrap_expect = {{ config_template.bootstrap_expect }}
-{{/if}}
+
+# Require 3 servers to bootstrap the cluster
+bootstrap_expect = 3
+
 # TLS/SSL stuff
 ca_file   = "/ssl/ca.pem"
 cert_file = "/ssl/cert.pem"
@@ -28,11 +28,11 @@ key_file  = "/ssl/cert-key.pem"
 # The standard data directory for Consul when ran in a Docker container.
 data_dir = "/consul/config"
 
-datacenter         = "{{ config_template.datacenter }}"
-domain             = "{{ config_template.domain }}"
-primary_datacenter = "tvcxair"
+datacenter         = "tvcxdc"
+domain             = "cons.ul"
+primary_datacenter = "tvcxdc"
 # Retry to join the other agents.
-retry_join_wan     = [
+retry_join         = [
     "10.125.42.0",
     "10.125.66.0",
     "10.125.169.0"
@@ -52,8 +52,8 @@ ports {
     https = 8500
 }
 
-server = {{ config_template.enable_server }}
-ui     = {{ config_template.enable_ui }}
+server = true
+ui     = true
 
 # Verify all outgoing communications.
 verify_outgoing     = true

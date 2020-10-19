@@ -6,6 +6,11 @@ acl {
     enabled = true
 }
 
+addresses {
+    # Let the HTTPS interface be accessible localhost, too
+    http = "{{ config_template.bind_addr }} 127.0.0.1"
+}
+
 bind_addr = "{{ config_template.bind_addr }}"
 
 # Nomad client configuration.

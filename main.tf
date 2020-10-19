@@ -92,11 +92,7 @@ resource "docker_container" "coredns" {
 
   command = ["-conf", "/config/Corefile"]
 
-  ports {
-    internal = 53
-    external = 53
-    protocol = "udp"
-  }
+  network_mode = "host"
 
   volumes {
     host_path      = "/srv/docker/coredns/config"

@@ -15,7 +15,7 @@ acl {
 
 # An address reachable by other Consul agents.
 bind_addr   = "{{ config_template.bind_addr }}"
-client_addr = "127.0.0.1"
+client_addr = "127.0.0.1,{{ config_template.bind_addr }}"
 
 # Require 3 servers to bootstrap the cluster
 bootstrap_expect = 3

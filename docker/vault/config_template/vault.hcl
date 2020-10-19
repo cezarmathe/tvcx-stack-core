@@ -7,7 +7,7 @@ listener "tcp" {
 }
 
 storage "consul" {
-    address       = "localhost:8500"
+    address       = "{{ config_template.listener_address }}:8500"
     path          = "vault/"
     scheme        = "https"
     token         = "{{ config_template.consul_token }}"

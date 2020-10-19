@@ -6,6 +6,12 @@ listener "tcp" {
     tls_key_file  = "/ssl/cert-key.pem"
 }
 
+listener "tcp" {
+    address       = "127.0.0.1:8200"
+    tls_cert_file = "/ssl/cert.pem"
+    tls_key_file  = "/ssl/cert-key.pem"
+}
+
 storage "consul" {
     address       = "{{ config_template.listener_address }}:8500"
     path          = "vault/"

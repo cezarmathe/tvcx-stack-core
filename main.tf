@@ -121,10 +121,6 @@ resource "docker_container" "fabio" {
 
   command = ["-cfg", "/etc/fabio/fabio.properties", "-insecure"]
 
-  env = [
-    "VAULT_ADDR=${var.vault_addr}"
-  ]
-
   network_mode = "host"
 
   volumes {

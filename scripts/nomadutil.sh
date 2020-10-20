@@ -61,11 +61,18 @@ function nomad_uninstall() {
     printf "%s\n" "Done!"
 }
 
+function nomad_cni() {
+    curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.8.1/cni-plugins-linux-amd64-v0.8.1.tgz
+    mkdir -p /opt/cni/bin
+    tar -C /opt/cni/bin -xzf cni-plugins.tgz
+    rm cni-plugins.tgz
+}
+
 function main() {
     local cmd
     cmd="$1"; shift
     if [[ -z "${cmd}" ]]; then
-        printf "%s\n" "Available commands: install start stop uninstall"
+        printf "%s\n" "Available commands: install start stop uninstall cni"
         exit 1
     fi
 
@@ -82,8 +89,11 @@ function main() {
     "stop")
         nomad_stop
         ;;
+    "cni")
+        nomad_cni
+        ;;
     *)
-        printf "%s\n" "Available commands: install start stop uninstall"
+        printf "%s\n" "Available commands: install start stop uninstall cni"
         ;;
     esac
 }

@@ -29,6 +29,48 @@ client {
         path      = "/etc/localtime"
         read_only = true
     }
+
+    {{#if config_template.enable_home}}
+    host_network "home" {
+        cidr = "192.168.0.0/24"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
+
+    {{#if config_template.enable_dorm}}
+    host_network "dorm" {
+        cidr = "192.168.1.0/24"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
+
+    {{#if config_template.enable_air}}
+    host_network "air" {
+        cidr = "165.227.157.141/32"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
+
+    {{#if config_template.enable_tvcxhome}}
+    host_network "tvcxhome" {
+        cidr = "10.125.42.0/24"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
+
+    {{#if config_template.enable_tvcxdorm}}
+    host_network "tvcxdorm" {
+        cidr = "10.125.169.0/24"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
+
+    {{#if config_template.enable_tvcxair}}
+    host_network "tvcxair" {
+        cidr = "10.125.66.0/24"
+        reserved_ports = "22,51820,51821,51822,51823,51824,51825"
+    }
+    {{/if}}
 }
 
 consul {

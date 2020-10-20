@@ -62,7 +62,13 @@ function nomad_uninstall() {
 }
 
 function nomad_cni() {
-    curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.8.1/cni-plugins-linux-amd64-v0.8.1.tgz
+    local arch
+    arch="$1"; shift
+    local ver
+    ver="$1"; shift
+    curl -L -o \
+        cni-plugins.tgz \
+        "https://github.com/containernetworking/plugins/releases/download/v${ver}/cni-plugins-linux-${arch}-v${ver}.tgz"
     mkdir -p /opt/cni/bin
     tar -C /opt/cni/bin -xzf cni-plugins.tgz
     rm cni-plugins.tgz
@@ -90,7 +96,7 @@ function main() {
         nomad_stop
         ;;
     "cni")
-        nomad_cni
+        nomad_cni $@
         ;;
     *)
         printf "%s\n" "Available commands: install start stop uninstall cni"

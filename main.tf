@@ -23,7 +23,7 @@ resource "docker_image" "consul" {
 }
 
 data "docker_registry_image" "coredns" {
-  name = "coredns/coredns:${var.coredns_image_version}"
+  name = "cezarmathe/coredns:${var.coredns_image_version}"
 }
 
 resource "docker_image" "coredns" {
@@ -78,7 +78,6 @@ resource "docker_container" "consul" {
 
   must_run = true
   restart  = "unless-stopped"
-  # rm       = true
   start    = true
 
   depends_on = [
@@ -90,32 +89,22 @@ resource "docker_container" "coredns" {
   name  = "coredns"
   image = docker_image.coredns.latest
 
-  command = ["-conf", "/config/Corefile"]
-
   network_mode = "host"
 
   volumes {
     host_path      = "/srv/docker/coredns/config"
-    container_path = "/config"
-    read_only      = true
-  }
-  volumes {
-    host_path      = "/etc/ssl/certs"
-    container_path = "/etc/ssl/certs"
+    container_path = "/coredns/config"
     read_only      = true
   }
 
   must_run = true
   restart  = "unless-stopped"
-  # rm       = true
   start    = true
 }
 
 resource "docker_container" "fabio" {
   name  = "fabio"
   image = docker_image.fabio.latest
-
-  command = ["-cfg", "/etc/fabio/fabio.properties", "-insecure"]
 
   network_mode = "host"
 
@@ -129,15 +118,14 @@ resource "docker_container" "fabio" {
     container_path = "/ssl"
     read_only      = true
   }
-  volumes {
-    host_path      = "/etc/ssl/certs"
-    container_path = "/etc/ssl/certs"
-    read_only      = true
-  }
+  # volumes {
+  #   host_path      = "/etc/ssl/certs"
+  #   container_path = "/etc/ssl/certs"
+  #   read_only      = true
+  # }
 
   must_run = true
   restart  = "unless-stopped"
-  # rm       = true
   start    = true
 
   depends_on = [

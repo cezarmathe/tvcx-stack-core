@@ -35,6 +35,10 @@ terraform {
 This will override the local storage backend with the remote one, letting you migrate the Terraform
 state.
 
+**NOTE** - The file **must** be named `backend_override.tf` - this way it will be ignored by git, so
+your Consul token is safe, where safe means safer that it getting leaked in a remote repository by
+accident, although it is still vulnerable if someone else has access your files.
+
 ## Rolling upgrades/modifications
 
 For the purpose of not killing off your Consul cluster, there are some default variables such as

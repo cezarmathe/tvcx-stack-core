@@ -46,7 +46,7 @@ For the purpose of not killing off your Consul cluster, there are some default v
 is intentional. You can fine-tune those variables to upgrade/modify your agents one by one, keeping
 your Consul cluster intact.
 
-## Starter main.auto.tfvars file
+## Starter `main.auto.tfvars` file
 
 This is a starter `main.auto.tfvars` file:
 

@@ -58,3 +58,10 @@ terraform {
 ## KV
 
 - `fabio/config` key that adds custom routes to each consul agent ui
+
+## Example `main.auto.tfvars` file
+
+```terraform
+consul_address = ""
+consul_token   = ""
+```

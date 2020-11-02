@@ -69,6 +69,12 @@ variable "personal_user_policies" {
   default     = []
 }
 
+variable "pki_stack_addresses" {
+  type        = list(string)
+  description = "A list of addresses that the stack certificates are allowed."
+  default     = []
+}
+
 variable "vault_address" {
   type        = string
   description = "The address of Vault."

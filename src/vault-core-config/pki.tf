@@ -14,8 +14,8 @@ resource "vault_mount" "pki" {
   type        = "pki"
   description = "PKI secrets backend."
 
-  default_lease_ttl_seconds = 604800   # One week
-  max_lease_ttl_seconds     = 2419200  # Four weeks
+  default_lease_ttl_seconds = 86400   # One day
+  max_lease_ttl_seconds     = 345600  # Four days
 }
 
 ### Configure the PKI secrets engine ###
@@ -38,7 +38,7 @@ resource "vault_pki_secret_backend_config_urls" "config_urls" {
 resource "vault_pki_secret_backend_role" "role_stack" {
   backend            = vault_mount.pki.path
   name               = "stack"
-  allowed_domains    = local.stack_allowed_domains
+  allowed_domains    = concat(local.stack_allowed_domains, var.pki_stack_addresses)
   allow_bare_domains = true
   allow_subdomains   = true
 }

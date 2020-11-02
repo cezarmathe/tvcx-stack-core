@@ -74,5 +74,7 @@ personal_user_name     = ""
 personal_user_password = ""
 personal_user_policies = []
 
+pki_stack_addresses = []
+
 vault_address = ""
 ```

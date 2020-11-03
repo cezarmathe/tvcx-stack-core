@@ -26,7 +26,7 @@ terraform {
   backend "consul" {
     address      = "<the address of your consul cluster>"
     scheme       = "https"
-    path         = "tf/state/consul-bootstrap"
+    path         = "stack/state/consul-bootstrap"
     access_token = "your-token
   }
 }

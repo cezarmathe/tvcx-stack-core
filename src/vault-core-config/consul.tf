@@ -62,7 +62,7 @@ resource "vault_generic_endpoint" "consul_role_rw_stack" {
 
   data_json = <<EOT
 {
-  "policies": ["kv_write_stack_config", "kw_write_stack_state"]
+  "policies": ["kv_write_stack_config", "kv_write_stack_state"]
 }
 EOT
 }

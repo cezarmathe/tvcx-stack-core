@@ -76,6 +76,27 @@ resource "consul_acl_policy" "kv_write_fabio" {
   })
 }
 
+resource "consul_acl_policy" "kv_write_stack_state" {
+  name  = "kv_write_stack_state"
+  rules = templatefile("${path.module}/policies/kv_write.hcl", {
+    prefix = "stack/state/"
+  })
+}
+
+resource "consul_acl_policy" "kv_write_stack_config" {
+  name  = "kv_write_stack_config"
+  rules = templatefile("${path.module}/policies/kv_write.hcl", {
+    prefix = "stack/config/"
+  })
+}
+
+resource "consul_acl_policy" "kv_read_stack_config_nomad" {
+  name  = "kv_read_stack_config_nomad"
+  rules = templatefile("${path.module}/policies/kv_read.hcl", {
+    prefix = "stack/config/nomad"
+  })
+}
+
 # Policy for Vault.
 resource "consul_acl_policy" "vault" {
   name = "vault"

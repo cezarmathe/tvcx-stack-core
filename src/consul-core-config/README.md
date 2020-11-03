@@ -18,7 +18,7 @@ terraform {
   backend "consul" {
     address      = "consul.addre.ss"
     scheme       = "https"
-    path         = "tf/state/consul-core-config"
+    path         = "stack/state/consul-core-config"
     access_token = "my-token"
   }
 }
@@ -35,7 +35,8 @@ terraform {
 - [write acl](policies/acl_write.hcl)
 - [operator agent control](policies/operator_agent_control.hcl)
 - [operator catalog](policies/operator_catalog.hcl)
-- [kw write](policies/kv_write.hcl) for these prefixes: `tf/`, `fabio/`
+- [kv read](policies/kv_read.hcl) for these prefixes: `stack/config/nomad`
+- [kv write](policies/kv_write.hcl) for these prefixes: `tf/`, `fabio/`, `stack/state`, `stack/config`
 
 ## Roles
 

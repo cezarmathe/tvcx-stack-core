@@ -19,7 +19,7 @@ terraform {
   backend "consul" {
     address      = "consul.addre.ss"
     scheme       = "https"
-    path         = "tf/state/vault-bootstrap"
+    path         = "stack/state/vault-bootstrap"
     access_token = "my-token"
   }
 }

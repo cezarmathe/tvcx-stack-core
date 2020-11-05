@@ -4,7 +4,7 @@ agent_prefix "" {
   policy = "read"
 }
 
-key_prefix "" {
+key_prefix "nomad" {
   policy = "read"
 }
 

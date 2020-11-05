@@ -98,9 +98,9 @@ variable "nomad0_wg_reserved_ports" {
   default     = ""
 }
 
-variable "nomad0_wg_cidr" {
+variable "nomad0_wg_addr" {
   type        = string
-  description = "The CIDR of the Wireguard interface for nomad0."
+  description = "The address of the Wireguard interface for nomad0."
 }
 
 ### nomad1
@@ -156,9 +156,9 @@ variable "nomad1_wg_reserved_ports" {
   default     = ""
 }
 
-variable "nomad1_wg_cidr" {
+variable "nomad1_wg_addr" {
   type        = string
-  description = "The CIDR of the Wireguard interface for nomad1."
+  description = "The address of the Wireguard interface for nomad1."
 }
 
 ### nomad2
@@ -214,7 +214,7 @@ variable "nomad2_wg_reserved_ports" {
   default     = ""
 }
 
-variable "nomad2_wg_cidr" {
+variable "nomad2_wg_addr" {
   type        = string
-  description = "The CIDR of the Wireguard interface for nomad2."
+  description = "The address of the Wireguard interface for nomad2."
 }

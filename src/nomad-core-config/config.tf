@@ -120,7 +120,7 @@ locals {
         reserved_ports = "%{ if var.nomad0_lan_reserved_ports != "" }${var.nomad0_lan_reserved_ports}%{ else }${var.lan_reserved_ports}%{ endif }"
       }
       (var.nomad0_wg_name) = {
-        cidr = var.nomad0_wg_cidr
+        cidr = "${var.nomad0_wg_addr}/24"
         reserved_ports = "%{ if var.nomad0_wg_reserved_ports != "" }${var.nomad0_wg_reserved_ports}%{ else }${var.wg_reserved_ports}%{ endif }"
       }
     }
@@ -132,6 +132,15 @@ locals {
     tls    = merge(local.common_tls,    local.nomad0_tls)
     vault  = merge(local.common_vault,  local.nomad0_vault)
     client = merge(local.common_client, local.nomad0_client)
+
+    addresses = {
+      rpc  = var.nomad0_wg_addr
+      serf = var.nomad0_wg_addr
+    }
+
+    advertise = {
+      http = var.nomad0_wg_addr
+    }
 
     data_dir   = "%{ if var.nomad0_data_dir != "" }${var.nomad0_data_dir}%{ else }${var.data_dir}%{ endif }"
   }
@@ -170,7 +179,7 @@ locals {
         reserved_ports = "%{ if var.nomad1_lan_reserved_ports != "" }${var.nomad1_lan_reserved_ports}%{ else }${var.lan_reserved_ports}%{ endif }"
       }
       (var.nomad1_wg_name) = {
-        cidr = var.nomad1_wg_cidr
+        cidr = "${var.nomad1_wg_addr}/24"
         reserved_ports = "%{ if var.nomad1_wg_reserved_ports != "" }${var.nomad1_wg_reserved_ports}%{ else }${var.wg_reserved_ports}%{ endif }"
       }
     }
@@ -182,6 +191,15 @@ locals {
     tls    = merge(local.common_tls,    local.nomad1_tls)
     vault  = merge(local.common_vault,  local.nomad1_vault)
     client = merge(local.common_client, local.nomad1_client)
+
+    addresses = {
+      rpc  = var.nomad1_wg_addr
+      serf = var.nomad1_wg_addr
+    }
+
+    advertise = {
+      http = var.nomad1_wg_addr
+    }
 
     data_dir   = "%{ if var.nomad1_data_dir != "" }${var.nomad1_data_dir}%{ else }${var.data_dir}%{ endif }"
   }
@@ -220,7 +238,7 @@ locals {
         reserved_ports = "%{ if var.nomad2_lan_reserved_ports != "" }${var.nomad2_lan_reserved_ports}%{ else }${var.lan_reserved_ports}%{ endif }"
       }
       (var.nomad2_wg_name) = {
-        cidr = var.nomad2_wg_cidr
+        cidr = "${var.nomad2_wg_addr}/24"
         reserved_ports = "%{ if var.nomad2_wg_reserved_ports != "" }${var.nomad2_wg_reserved_ports}%{ else }${var.wg_reserved_ports}%{ endif }"
       }
     }
@@ -232,6 +250,15 @@ locals {
     tls    = merge(local.common_tls,    local.nomad2_tls)
     vault  = merge(local.common_vault,  local.nomad2_vault)
     client = merge(local.common_client, local.nomad2_client)
+
+    addresses = {
+      rpc  = var.nomad2_wg_addr
+      serf = var.nomad2_wg_addr
+    }
+
+    advertise = {
+      http = var.nomad2_wg_addr
+    }
 
     data_dir   = "%{ if var.nomad2_data_dir != "" }${var.nomad2_data_dir}%{ else }${var.data_dir}%{ endif }"
   }

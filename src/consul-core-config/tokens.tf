@@ -65,3 +65,21 @@ resource "consul_acl_token" "nomad2" {
   description = "Nomad on ${local.all_nodes[2]}"
   policies    = [consul_acl_policy.nomad.name]
 }
+
+# Token for consul-template on host0.
+resource "consul_acl_token" "ct_host0" {
+  description = "consul-template on host0"
+  policies    = [consul_acl_policy.kv_read_stack_config_nomad.name]
+}
+
+# Token for consul-template on host1.
+resource "consul_acl_token" "ct_host1" {
+  description = "consul-template on host1"
+  policies    = [consul_acl_policy.kv_read_stack_config_nomad.name]
+}
+
+# Token for consul-template on host2.
+resource "consul_acl_token" "ct_host2" {
+  description = "consul-template on host2"
+  policies    = [consul_acl_policy.kv_read_stack_config_nomad.name]
+}

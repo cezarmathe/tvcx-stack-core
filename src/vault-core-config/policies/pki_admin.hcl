@@ -11,3 +11,7 @@ path "pki/roles/*" {
 path "pki/certs/*" {
     capabilities = ["read", "delete", "list"]
 }
+
+path "pki/revoke" {
+    capabilities = ["create", "update"]
+}

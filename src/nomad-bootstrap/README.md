@@ -1,6 +1,6 @@
-# nomad-core-config
+# nomad-bootstrap
 
-This module creates the core configuration of the Consul cluster.
+This module creates the configuration(files) of the Nomad cluster.
 
 ## Usage
 
@@ -18,7 +18,7 @@ terraform {
   backend "consul" {
     address      = "consul.addre.ss"
     scheme       = "https"
-    path         = "stack/state/nomad-core-config"
+    path         = "stack/state/nomad-bootstrap"
     access_token = "my-token"
   }
 }

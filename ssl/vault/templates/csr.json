@@ -1,8 +1,0 @@
-{
-    "CN": "{{ templates.common_name }}",
-    "hosts": [
-        "{{ templates.network_interface }}",
-        "127.0.0.1",
-        "localhost"
-    ]
-}

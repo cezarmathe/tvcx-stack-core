@@ -1,1 +1,0 @@
-# tvcx-stack-core - output

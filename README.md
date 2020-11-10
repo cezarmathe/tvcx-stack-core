@@ -1,49 +1,15 @@
-# srv-src
+# tvcx-stack-core
 
-Sources for the configuration of a few services deployed on my servers.
+Source for my server stack.
 
-## IDEAS
+## What does this include?
 
-- you can send SIGHUP to hashi software to reload the config
+This repository includes four terraform modules:
 
-## Project structure
+- [consul-bootstrap](src/consul-bootstrap)
+- [consul-core-config](src/consul-core-config)
+- [vault-bootstrap](src/vault-bootstrap)
+- [vault-core-config](src/vault-core-config)
+- [nomad-bootstrap](src/nomad-bootstrap)
 
-- **docker** - data that will be mounted inside the Docker containers of core components
-
-- **etc** - configurations to be symlinked to `/etc`
-
-- **scripts** - a few scripts to prepare the machine(symlinks, hardlinks, certificates, firewall)
-
-- **ssl** - instructions and data for the purpose of getting certificates for each core component
-
-- **tf-\*** - Terraform code to perform advanced configuration on the core components
-
-- **ufw** - firewall rules for the security of core components
-
-## Steps
-
-1. Clone this repository
-
-2. Fill data files
-
-You need to fill these files:
-
-- ssl/consul/templates/eri.conf - data for the Consul certificate
-- ssl/vault/templates/eri.conf - data for the Vault certificate
-
-- etc/nomad.d/config_template/eri.conf - data for the Nomad configuration file template
-
-## Installation
-
-```shell
-./scripts/symlinks.sh do
-./scripts/certificates.sh request
-./scripts/certificates.sh hardlink
-./scripts/firewall.sh start
-```
-
-## Deployment
-
-```shell
-docker-compose up -d
-```
+Each has a `README.md` file.
